@@ -3,12 +3,14 @@ package com.ljh.RPCObj;
 import lombok.Builder;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /*
 * 对于网络传输肯定会有状态码 所以需要状态信息和对应的数据*/
 
 @Data
 @Builder
-public class RPCResponse {
+public class RPCResponse implements Serializable {
     private int code;
     private String message;
     //具体数据

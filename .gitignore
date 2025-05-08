@@ -1,0 +1,14 @@
+# IDEA
+.idea/
+*.iml
+
+# 编译文件
+*.class
+*.pyc
+__pycache__/
+
+# 日志
+*.log
+
+# 临时文件
+*.tmp

@@ -2,6 +2,7 @@ package com.ljh.server;
 
 import com.ljh.RPCObj.RPCRequest;
 import com.ljh.RPCObj.RPCResponse;
+import com.ljh.server.provider.ServiceProvider;
 import lombok.AllArgsConstructor;
 
 import java.io.IOException;
@@ -19,7 +20,7 @@ import java.util.Map;
 @AllArgsConstructor
 public class WorkThread implements Runnable{
     private Socket socket;
-    private Map<String,Object> serviceProvider;
+    private ServiceProvider serviceProvider;
     @Override
     public void run() {
         try{
@@ -40,7 +41,7 @@ public class WorkThread implements Runnable{
 
     private RPCResponse getResponse(RPCRequest request) {
         //通过服务映射来获取对应的服务
-        Object service = serviceProvider.get(request.getInterfaceName());
+        Object service = serviceProvider.getService(request.getInterfaceName());
         Method method = null;
         try{
             //反射获取对应的方法

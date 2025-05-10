@@ -2,6 +2,7 @@ package com.ljh.server.serverImpl;
 
 import com.ljh.server.RPCServer;
 import com.ljh.server.WorkThread;
+import com.ljh.server.provider.ServiceProvider;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -13,10 +14,10 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class ThreadPoolRPCServer implements RPCServer {
-    private Map<String,Object> serviceProvider;
+    private ServiceProvider serviceProvider;
     private final ThreadPoolExecutor threadPool;
 
-    public ThreadPoolRPCServer(Map<String,Object> provider){
+    public ThreadPoolRPCServer(ServiceProvider provider){
         threadPool = new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors(),
                 1000,
                 60,
@@ -25,7 +26,7 @@ public class ThreadPoolRPCServer implements RPCServer {
         serviceProvider = provider;
     }
 
-    public ThreadPoolRPCServer(Map<String,Object> provider,
+    public ThreadPoolRPCServer(ServiceProvider provider,
                                int corePoolSize,
                                int maximumPoolSize,
                                long keepAliveTime,

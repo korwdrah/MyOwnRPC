@@ -13,8 +13,8 @@ import java.lang.reflect.Proxy;
  */
 @AllArgsConstructor
 public class ClientProxy implements InvocationHandler {
-    private String host;
-    private int port;
+    //通过接口来直接发送请求 可能有netty的实现，也可能是普通实现
+    private RPClient rpClient;
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
@@ -23,8 +23,8 @@ public class ClientProxy implements InvocationHandler {
                 .methodName(method.getName())
                 .params(args)
                 .paramsTypes(method.getParameterTypes()).build();
-        RPCResponse response = IOClient.sendRequest(host, port, request);
-        System.out.println(response);
+        //通过客户端接口来发送请求
+        RPCResponse response = rpClient.sendRequest(request);
         return response.getData();
     }
     //创建代理对象

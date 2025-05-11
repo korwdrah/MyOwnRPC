@@ -1,24 +1,16 @@
 package com.ljh.client;
 
-import com.ljh.RPCObj.RPCRequest;
-import com.ljh.RPCObj.RPCResponse;
 import com.ljh.pojo.Blog;
-import com.ljh.pojo.User;
 import com.ljh.service.BlogService;
-import com.ljh.service.UserService;
 import com.ljh.service.impl.UserServiceImpl;
-
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
-import java.util.Random;
 
 public class RpcClient {
     //客户端的行为
     public static void main(String[] args) {
         UserServiceImpl userService = new UserServiceImpl();
-        ClientProxy clientProxy = new ClientProxy("127.0.0.1", 8899);
+        //只需要通过客户端去发送消息
+        SimpleRpcClient simpleRpcClient = new SimpleRpcClient("127.0.0.1", 8899);
+        ClientProxy clientProxy = new ClientProxy(simpleRpcClient);
 //        UserService proxy = clientProxy.getProxy(UserService.class);
 //
 //        //调用方法1

@@ -1,4 +1,4 @@
-package com.ljh.server.serverInitialize;
+package com.ljh.server.nettyserver.serverInitialize;
 
 import com.ljh.RPCObj.RPCRequest;
 import com.ljh.RPCObj.RPCResponse;

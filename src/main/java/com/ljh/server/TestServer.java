@@ -1,13 +1,11 @@
 package com.ljh.server;
 
 import com.ljh.server.provider.ServiceProvider;
-import com.ljh.server.serverImpl.ThreadPoolRPCServer;
+import com.ljh.server.threadpoolserver.ThreadPoolRPCServer;
 import com.ljh.service.BlogService;
 import com.ljh.service.UserService;
 import com.ljh.service.impl.BlogServiceImpl;
 import com.ljh.service.impl.UserServiceImpl;
-
-import java.util.HashMap;
 
 public class TestServer {
     public static void main(String[] args) {

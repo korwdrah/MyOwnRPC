@@ -1,13 +1,11 @@
-package com.ljh.server.serverImpl;
+package com.ljh.server.threadpoolserver;
 
 import com.ljh.server.RPCServer;
-import com.ljh.server.WorkThread;
 import com.ljh.server.provider.ServiceProvider;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;

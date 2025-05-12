@@ -1,13 +1,14 @@
-package com.ljh.server;
+package com.ljh.server.nettyserver;
 
+import com.ljh.server.RPCServer;
 import com.ljh.server.provider.ServiceProvider;
-import com.ljh.server.serverInitialize.NettyServerInitializer;
+import com.ljh.server.nettyserver.serverInitialize.NettyServerInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
-public class NettyRPCServer implements RPCServer{
+public class NettyRPCServer implements RPCServer {
     private ServiceProvider serviceProvider;
     @Override
     public void start(int port) {

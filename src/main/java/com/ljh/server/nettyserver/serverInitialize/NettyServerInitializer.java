@@ -1,6 +1,9 @@
 package com.ljh.server.nettyserver.serverInitialize;
 
 import com.ljh.server.provider.ServiceProvider;
+import com.ljh.utils.myserializer.JsonSerializer;
+import com.ljh.utils.myserializer.encodedecode.MyDecoder;
+import com.ljh.utils.myserializer.encodedecode.MyEncoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
@@ -20,26 +23,9 @@ public class NettyServerInitializer extends ChannelInitializer<SocketChannel> {
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
-        //Inbound 流程
-        // 消息格式 [长度][消息体], 解决粘包问题 整个包的最大长度 长度字段的偏移量 长度字段大小（4字节---int) 需要调整的偏移量（不包含消息头的长度就要调整，0就代表就是消息体的长度） 从解码后的帧跳的字节数（跳过4个字节的长度字段）
-        // 解码消息
-        pipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE,0,4,0,4));
-        //解码成Java类对象
-        pipeline.addLast(new ObjectDecoder(new ClassResolver() {
-            @Override
-            public Class<?> resolve(String className) throws ClassNotFoundException {
-                return Class.forName(className);
-            }
-        }));
+        pipeline.addLast(new MyDecoder());
+        pipeline.addLast(new MyEncoder(new JsonSerializer()));
 
-
-        //outBound流程---编码 写入长度
-        // 编码器，长度字段，写入到前4个字节中 int类型
-        pipeline.addLast(new LengthFieldPrepender(4));
-
-        // 这里使用的还是java 序列化方式， netty的自带的解码编码支持传输这种结构
-        pipeline.addLast(new ObjectEncoder());
-        //inBound和outBound的连接点 调用完逆序找outBound
         //具体的调用方法 会触发outBound
         pipeline.addLast(new NettyRPCServerHandler(serviceProvider));
 

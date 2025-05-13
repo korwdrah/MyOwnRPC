@@ -16,7 +16,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class NettyServerInitializer extends ChannelInitializer<SocketChannel> {
     private ServiceProvider serviceProvider;
-    //inbound和outbound保持相对顺序，内部的handler保持代码的顺序
+    //inbound和outbound公用一个链表
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
@@ -31,8 +31,7 @@ public class NettyServerInitializer extends ChannelInitializer<SocketChannel> {
                 return Class.forName(className);
             }
         }));
-        //具体的调用方法
-        pipeline.addLast(new NettyRPCServerHandler(serviceProvider));
+
 
         //outBound流程---编码 写入长度
         // 编码器，长度字段，写入到前4个字节中 int类型
@@ -40,6 +39,9 @@ public class NettyServerInitializer extends ChannelInitializer<SocketChannel> {
 
         // 这里使用的还是java 序列化方式， netty的自带的解码编码支持传输这种结构
         pipeline.addLast(new ObjectEncoder());
+        //inBound和outBound的连接点 调用完逆序找outBound
+        //具体的调用方法 会触发outBound
+        pipeline.addLast(new NettyRPCServerHandler(serviceProvider));
 
     }
 }

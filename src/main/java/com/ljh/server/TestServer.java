@@ -1,5 +1,6 @@
 package com.ljh.server;
 
+import com.ljh.server.nettyserver.NettyRPCServer;
 import com.ljh.server.provider.ServiceProvider;
 import com.ljh.server.threadpoolserver.ThreadPoolRPCServer;
 import com.ljh.service.BlogService;
@@ -18,7 +19,9 @@ public class TestServer {
         provider.provideServiceInterface(userService);
         provider.provideServiceInterface(blogService);
 
-        ThreadPoolRPCServer server = new ThreadPoolRPCServer(provider);
+//        ThreadPoolRPCServer server = new ThreadPoolRPCServer(provider);
+//        server.start(8899);
+        NettyRPCServer server = new NettyRPCServer(provider);
         server.start(8899);
     }
 }

@@ -8,7 +8,7 @@ import org.apache.zookeeper.CreateMode;
 
 import java.net.InetSocketAddress;
 import java.util.List;
-
+//znode格式：/rootpath/servicename/host:port
 public class ZKServiceRegister implements ServiceRegister{
     //zk客户端
     private CuratorFramework client;

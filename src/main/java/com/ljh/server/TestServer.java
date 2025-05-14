@@ -15,7 +15,7 @@ public class TestServer {
 //        HashMap<String, Object> serviceMap = new HashMap<>();
 //        serviceMap.put("com.ljh.service.UserService",userService);
 //        serviceMap.put("com.ljh.service.BlogService",blogService);
-        ServiceProvider provider = new ServiceProvider();
+        ServiceProvider provider = new ServiceProvider("127.0.0.1",8899);
         provider.provideServiceInterface(userService);
         provider.provideServiceInterface(blogService);
 

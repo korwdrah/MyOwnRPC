@@ -12,7 +12,8 @@ public class RpcClient {
         UserServiceImpl userService = new UserServiceImpl();
         //只需要通过客户端去发送消息
 //        SimpleRpcClient simpleRpcClient = new SimpleRpcClient("127.0.0.1", 8899);
-        NettyRPCClient nettyRPCClient = new NettyRPCClient("127.0.0.1", 8899);
+        //通过zkp获取服务端的信息
+        NettyRPCClient nettyRPCClient = new NettyRPCClient();
         ClientProxy clientProxy = new ClientProxy(nettyRPCClient);
 
 //        UserService proxy = clientProxy.getProxy(UserService.class);

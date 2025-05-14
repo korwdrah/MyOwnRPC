@@ -3,6 +3,8 @@ package com.ljh.client.nettyclinet;
 import com.ljh.RPCObj.RPCRequest;
 import com.ljh.RPCObj.RPCResponse;
 import com.ljh.client.RPClient;
+import com.ljh.utils.zkp.ServiceRegister;
+import com.ljh.utils.zkp.ZKServiceRegister;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -12,6 +14,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.AttributeKey;
 import lombok.AllArgsConstructor;
 
+import java.net.InetSocketAddress;
 import java.util.concurrent.CountDownLatch;
 
 @AllArgsConstructor
@@ -20,6 +23,12 @@ public class NettyRPCClient implements RPClient {
     private static final EventLoopGroup eventLoopGroup;
     private String host;
     private int port;
+    private ServiceRegister serviceRegister;
+
+    public NettyRPCClient(){
+        serviceRegister = new ZKServiceRegister();
+    }
+
     static {
         //初始化
         eventLoopGroup = new NioEventLoopGroup();
@@ -31,6 +40,9 @@ public class NettyRPCClient implements RPClient {
 
     @Override
     public RPCResponse sendRequest(RPCRequest request) {
+        InetSocketAddress address = serviceRegister.serviceDiscovery(request.getInterfaceName());
+        host = address.getHostName();
+        port = address.getPort();
         try{
             //具体的发送请求
             ChannelFuture channelFuture = bootStrap.connect(host, port).sync();

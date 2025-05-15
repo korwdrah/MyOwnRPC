@@ -1,5 +1,7 @@
 package com.ljh.utils.zkp;
 
+import com.ljh.utils.loadbalance.LoadBalance;
+import com.ljh.utils.loadbalance.RoundLoadBalance;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
@@ -7,6 +9,7 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.CreateMode;
 
 import java.net.InetSocketAddress;
+import java.nio.FloatBuffer;
 import java.util.List;
 //znode格式：/rootpath/servicename/host:port
 public class ZKServiceRegister implements ServiceRegister{
@@ -14,6 +17,9 @@ public class ZKServiceRegister implements ServiceRegister{
     private CuratorFramework client;
     // zookeeper根路径节点
     private static final String ROOT_PATH = "MyRPC";
+    //添加负载均衡 这个应该是可见的
+    private LoadBalance loadBalance = new RoundLoadBalance();
+
     //初始化客户端
     public ZKServiceRegister(){
         // 指数时间重试
@@ -45,7 +51,8 @@ public class ZKServiceRegister implements ServiceRegister{
     public InetSocketAddress serviceDiscovery(String serviceName) {
         try {
             List<String> paths = client.getChildren().forPath("/" + serviceName);
-            String addStr = paths.get(0);
+            //通过负载均衡选择服务器
+            String addStr = loadBalance.balance(paths);
             return parseAddress(addStr);
         }
         catch (Exception e){

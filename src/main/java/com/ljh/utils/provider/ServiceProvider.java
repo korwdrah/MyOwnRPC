@@ -1,4 +1,4 @@
-package com.ljh.server.provider;
+package com.ljh.utils.provider;
 
 import com.ljh.utils.zkp.ServiceRegister;
 import com.ljh.utils.zkp.ZKServiceRegister;

@@ -4,10 +4,8 @@ package com.ljh.utils.myserializer;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.ljh.RPCObj.RPCRequest;
-import com.ljh.RPCObj.RPCResponse;
-
-import java.io.ByteArrayOutputStream;
+import com.ljh.utils.RPCObj.RPCRequest;
+import com.ljh.utils.RPCObj.RPCResponse;
 
 public class JsonSerializer implements Serializer {
     @Override

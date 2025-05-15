@@ -11,7 +11,7 @@ import com.ljh.service.impl.UserServiceImpl;
 public class RpcClient {
     //客户端的行为
     public static void main(String[] args) {
-        UserServiceImpl userService = new UserServiceImpl();
+//        UserServiceImpl userService = new UserServiceImpl();
         //只需要通过客户端去发送消息
 //        SimpleRpcClient simpleRpcClient = new SimpleRpcClient("127.0.0.1", 8899);
         //通过zkp获取服务端的信息

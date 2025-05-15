@@ -1,7 +1,7 @@
 package com.ljh.server.threadpoolserver;
 
 import com.ljh.server.RPCServer;
-import com.ljh.server.provider.ServiceProvider;
+import com.ljh.utils.provider.ServiceProvider;
 
 import java.io.IOException;
 import java.net.ServerSocket;

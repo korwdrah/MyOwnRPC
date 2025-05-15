@@ -1,7 +1,7 @@
 package com.ljh.client;
 
-import com.ljh.RPCObj.RPCRequest;
-import com.ljh.RPCObj.RPCResponse;
+import com.ljh.utils.RPCObj.RPCRequest;
+import com.ljh.utils.RPCObj.RPCResponse;
 import com.ljh.utils.zkp.ServiceRegister;
 import com.ljh.utils.zkp.ZKServiceRegister;
 import lombok.AllArgsConstructor;

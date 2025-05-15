@@ -1,4 +1,4 @@
-package com.ljh.RPCObj;
+package com.ljh.utils.RPCObj;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

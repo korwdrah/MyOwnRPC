@@ -1,11 +1,9 @@
 package com.ljh.client.nettyclinet;
 
-import com.ljh.RPCObj.RPCResponse;
-import io.netty.channel.ChannelHandler;
+import com.ljh.utils.RPCObj.RPCResponse;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.AttributeKey;
-import io.netty.util.concurrent.EventExecutorGroup;
 
 public class NettyRPClientHandler extends SimpleChannelInboundHandler<RPCResponse> {
     @Override

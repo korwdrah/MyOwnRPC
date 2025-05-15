@@ -1,8 +1,8 @@
 package com.ljh.server.nettyserver.serverInitialize;
 
-import com.ljh.RPCObj.RPCRequest;
-import com.ljh.RPCObj.RPCResponse;
-import com.ljh.server.provider.ServiceProvider;
+import com.ljh.utils.RPCObj.RPCRequest;
+import com.ljh.utils.RPCObj.RPCResponse;
+import com.ljh.utils.provider.ServiceProvider;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.AllArgsConstructor;

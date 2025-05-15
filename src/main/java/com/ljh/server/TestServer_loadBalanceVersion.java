@@ -1,7 +1,7 @@
 package com.ljh.server;
 
 import com.ljh.server.nettyserver.NettyRPCServer;
-import com.ljh.server.provider.ServiceProvider;
+import com.ljh.utils.provider.ServiceProvider;
 import com.ljh.service.BlogService;
 import com.ljh.service.UserService;
 import com.ljh.service.impl.BlogServiceImpl;

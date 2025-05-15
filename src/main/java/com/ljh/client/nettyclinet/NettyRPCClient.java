@@ -1,7 +1,7 @@
 package com.ljh.client.nettyclinet;
 
-import com.ljh.RPCObj.RPCRequest;
-import com.ljh.RPCObj.RPCResponse;
+import com.ljh.utils.RPCObj.RPCRequest;
+import com.ljh.utils.RPCObj.RPCResponse;
 import com.ljh.client.RPClient;
 import com.ljh.utils.zkp.ServiceRegister;
 import com.ljh.utils.zkp.ZKServiceRegister;
@@ -15,7 +15,6 @@ import io.netty.util.AttributeKey;
 import lombok.AllArgsConstructor;
 
 import java.net.InetSocketAddress;
-import java.util.concurrent.CountDownLatch;
 
 @AllArgsConstructor
 public class NettyRPCClient implements RPClient {

@@ -1,13 +1,11 @@
 package com.ljh.utils.myserializer.encodedecode;
 
-import com.ljh.RPCObj.RPCRequest;
+import com.ljh.utils.RPCObj.RPCRequest;
 import com.ljh.utils.myserializer.Serializer;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
 import lombok.AllArgsConstructor;
-
-import java.awt.*;
 
 @AllArgsConstructor
 public class MyEncoder extends MessageToByteEncoder {

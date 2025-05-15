@@ -2,8 +2,10 @@ package com.ljh.client;
 
 import com.ljh.client.nettyclinet.NettyRPCClient;
 import com.ljh.pojo.Blog;
+import com.ljh.pojo.User;
 import com.ljh.server.nettyserver.NettyRPCServer;
 import com.ljh.service.BlogService;
+import com.ljh.service.UserService;
 import com.ljh.service.impl.UserServiceImpl;
 
 public class RpcClient {
@@ -16,15 +18,16 @@ public class RpcClient {
         NettyRPCClient nettyRPCClient = new NettyRPCClient();
         ClientProxy clientProxy = new ClientProxy(nettyRPCClient);
 
-//        UserService proxy = clientProxy.getProxy(UserService.class);
-//
-//        //调用方法1
-//        User user = proxy.getUserByUserId(1);
-//        System.out.println(user);
+        UserService proxy = clientProxy.getProxy(UserService.class);
+
+        //调用方法1
+        User user = proxy.getUserByUserId(1);
+        System.out.println(user);
 //        Integer user1 = proxy.insertUser(user);
 //        System.out.println("user1 = " + user1);
-        BlogService proxy = clientProxy.getProxy(BlogService.class);
-        Blog blog = proxy.getBlogById(11);
+        //尝试负载均衡---一个客户端的多个请求去负载均衡
+        BlogService proxy_1 = clientProxy.getProxy(BlogService.class);
+        Blog blog = proxy_1.getBlogById(11);
         System.out.println("blog = " + blog);
 
 
